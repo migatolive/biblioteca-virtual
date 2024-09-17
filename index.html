@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="src/js/jquery-3.7.1.min.js"></script>
+    <title>Library-Aministration</title>
+</head>
+<body id="body">
+    <section id="content">
+        <form class="form" action="" method="post">
+            <div class="inContainer">
+                <h3 class="label">Autor</h3>
+                <input type="text" class="input" placeholder="Autor">
+            </div>
+            <div class="inContainer">
+                <h3 class="label">Titulo</h3>
+                <input type="text" class="input" placeholder="Titulo">
+            </div>
+            <div class="inContainer">
+                <h3 class="label">Genero</h3>
+    
+                <input list="Gemero">
+    
+                <datalist id="Gemero">
+                    <option value="Accion">
+                    <option value="Fantasia">
+                    <option value="Drama">
+                    <option value="Terror">
+                    <option value="Ciencia Ficcion">
+                    <option value="Suspenso">
+                    <option value="Romantico">
+                </datalist>
+            </div>
+            <div class="inContainer">
+                <h3 class="label">Editorial</h3>
+                <input type="text" class="input" placeholder="Editorial">
+            </div>
+            <div class="inContainer">
+                <h3 class="label">Stock</h3>
+                <input type="text" class="input" placeholder="Stock">
+            </div>
+            <div class="inContainer">
+                <h3 class="label">Imagen</h3>
+                <input type="file" class="input" placeholder="Imagen">
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </section>
+    
+    <script src="src/js/layouts/borders.js"></script>
+</body>
+</html>
