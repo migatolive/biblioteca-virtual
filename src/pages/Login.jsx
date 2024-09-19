@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authActions.jsx";
-import Error from '../components/Error'
+import Error from '../components/Error.jsx'
 import Spinner from "../components/Spinner.jsx";
 
 const LoginForm = () => {
@@ -24,7 +24,7 @@ const LoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            {error && <Error>{error}</Error>}
+            {error && <Error message={error} />}
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Email</h3>
                 <input
@@ -47,7 +47,7 @@ const LoginForm = () => {
                 {loading ? <Spinner /> : 'Iniciar sesión'}
             </button>
         </form>
-    );
+    )
 }
 
-export default LoginForm;
+export default LoginForm
