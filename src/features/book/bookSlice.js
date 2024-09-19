@@ -6,7 +6,7 @@ const initialState = {
     books: [],
     error: null,
     success: false,
-};
+}
 
 const bookSlice = createSlice({
     name: 'books',
