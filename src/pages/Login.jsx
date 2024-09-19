@@ -1,37 +1,51 @@
-import { useForm } from 'react-hook-form';
+import { useEffect } from "react";
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../features/auth/authActions.jsx";
+import Error from '../components/Error'
+import Spinner from "../components/Spinner.jsx";
 
 const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { loading, userInfo, error } = useSelector(
+        (state) => state.user
+    )
+    const dispatch = useDispatch()
+    const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (userInfo) navigate('/')
+    }, [navigate, userInfo])
 
     const onSubmit = (data) => {
-        console.log(data);
+        dispatch(loginUser(data))
     }
 
     return (
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            {error && <Error>{error}</Error>}
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Email</h3>
                 <input
                     type="email"
-                    className="input"
-                    name="email"
                     placeholder="Email"
-                    {...register('email', { required: true })}
+                    {...register('email')}
+                    required
                 />
-                {errors.email && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Contraseña</h3>
                 <input
                     type="password"
-                    className="input"
-                    name="password"
                     placeholder="Contraseña"
-                    {...register('password', { required: true })}
+                    {...register('password')}
+                    required
                 />
-                {errors.password && <span>Este campo es requerido</span>}
             </div>
-            <button className="btn" type="submit">Iniciar sesión</button>
+            <button type="submit" disabled={loading}>
+                {loading ? <Spinner /> : 'Iniciar sesión'}
+            </button>
         </form>
     );
 }

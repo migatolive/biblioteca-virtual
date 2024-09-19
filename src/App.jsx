@@ -1,17 +1,24 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import CreateBook from './pages/CreateBook.jsx';
-import Login from './pages/Login.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Profile from './pages/Profile'
+import ProtectedRoute from "./ProtectedRoute.jsx";
+import BookDataForm from "./pages/BookDataForm.jsx";
 
 function App() {
     return (
         <Router>
             <Header />
-            <main id="content">
+            <main className='container content'>
                 <Routes>
-                    <Route path="/" element={<CreateBook />}/>
+                    <Route path="/" element={<BookDataForm />}/>
                     <Route path="/login" element={<Login />}/>
+                    <Route path="/register" element={<Register />}/>
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/user-profile" element={<Profile />}/>
+                    </Route>
                 </Routes>
             </main>
             <Footer />

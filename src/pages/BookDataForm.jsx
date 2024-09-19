@@ -1,14 +1,66 @@
-import { useForm } from 'react-hook-form';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createBook } from "../features/book/bookActions.jsx"; // Asume que este action existe
+import Error from "../components/Error.jsx";
 
-const CreateBook = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+const BookDataForm = () => {
+    const [formData, setFormData] = useState({
+        title: '',
+        author: '',
+        publisher: '',
+        categories: '',
+        description: '',
+        pdf: null,
+        coverImage: null,
+    });
 
-    const onSubmit = (data) => {
-        console.log(data);
-    }
+    const [error, setError] = useState('');
+    const dispatch = useDispatch();
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        if (files) {
+            setFormData({
+                ...formData,
+                [name]: files[0],
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Reset error state before attempting to submit
+        setError('');
+
+        // Convert formData to FormData object for file uploads
+        const data = new FormData();
+        for (const key in formData) {
+            data.append(key, formData[key]);
+        }
+
+        try {
+            // Dispatch action to create a book
+            await dispatch(createBook(data)).unwrap();
+            // Handle successful submission (e.g., redirect, show a success message, etc.)
+        } catch (err) {
+            // Handle errors
+            if (err.message) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred.');
+            }
+        }
+    };
 
     return (
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form" onSubmit={handleSubmit}>
+            {error && <Error message={error} />}
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Autor</h3>
                 <input
@@ -16,9 +68,10 @@ const CreateBook = () => {
                     className="input"
                     name="author"
                     placeholder="Autor"
-                    {...register('author', { required: true })}
+                    value={formData.author}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.author && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Titulo</h3>
@@ -27,9 +80,10 @@ const CreateBook = () => {
                     className="input"
                     name="title"
                     placeholder="Titulo"
-                    {...register('title', { required: true })}
+                    value={formData.title}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.title && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Genero</h3>
@@ -38,7 +92,9 @@ const CreateBook = () => {
                     className="input"
                     name="categories"
                     placeholder="Genero"
-                    {...register('categories', { required: true })}
+                    value={formData.categories}
+                    onChange={handleChange}
+                    required
                 />
                 <datalist id="categories">
                     <option value="fiction" />
@@ -53,7 +109,6 @@ const CreateBook = () => {
                     <option value="biography" />
                     <option value="autobiography" />
                 </datalist>
-                {errors.categories && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Editorial</h3>
@@ -62,9 +117,10 @@ const CreateBook = () => {
                     className="input"
                     name="publisher"
                     placeholder="Editorial"
-                    {...register('publisher', { required: true })}
+                    value={formData.publisher}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.publisher && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label">Descripción</h3>
@@ -72,9 +128,10 @@ const CreateBook = () => {
                     className="input"
                     name="description"
                     placeholder="Descripción"
-                    {...register('description', { required: true })}
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.description && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">Imagen de Portada</h3>
@@ -82,9 +139,9 @@ const CreateBook = () => {
                     type="file"
                     className="input"
                     name="coverImage"
-                    {...register('coverImage', { required: true })}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.coverImage && <span>Este campo es requerido</span>}
             </div>
             <div className="inContainer">
                 <h3 className="label text-sm font-semibold leading-6 text-gray-900">PDF</h3>
@@ -92,13 +149,13 @@ const CreateBook = () => {
                     type="file"
                     className="input"
                     name="pdf"
-                    {...register('pdf', { required: true })}
+                    onChange={handleChange}
+                    required
                 />
-                {errors.pdf && <span>Este campo es requerido</span>}
             </div>
             <button type="submit" className="btn">Enviar</button>
         </form>
     );
 };
 
-export default CreateBook;
+export default BookDataForm;
