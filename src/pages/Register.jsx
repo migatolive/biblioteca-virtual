@@ -32,33 +32,39 @@ const Register = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className='form pt-4 pb-4 w-[50vw] bg-stone-800 flex flex-col place-items-center rounded-md'>
                 {error && <Error>{error}</Error>}
-                <div className="inContainer">
-                    <label className="label text-sm font-semibold leading-6 text-gray-900" htmlFor="email">Correo Electronico</label>
+                <div className="inContainer w-[80%] mt-2 mb-2">
+                    <label className="label text-sm font-semibold leading-6 block mb-2 text-stone-50" htmlFor="email">Correo Electrónico</label>
                     <input
+                        className='input border-2 rounded w-full px-2'
                         type="email"
                         {...register('email')}
+                        placeholder='Correo Electrónico'
                         required
                     />
                 </div>
-                <div className="inContainer">
-                    <label className="label text-sm font-semibold leading-6 text-gray-900" htmlFor="password">Contraseña</label>
+                <div className="inContainer w-[80%] mt-2 mb-2">
+                    <label className="label text-sm font-semibold leading-6 block mb-2 text-stone-50" htmlFor="password">Contraseña</label>
                     <input
+                        className='input border-2 rounded w-full px-2'
                         type="password"
                         {...register('password')}
+                        placeholder='Contraseña'
                         required
                     />
                 </div>
-                <div className="inContainer">
-                    <label className="label text-sm font-semibold leading-6 text-gray-900" htmlFor="confirmPassword">Confirmar Contraseña</label>
+                <div className="inContainer w-[80%] mt-2 mb-2">
+                    <label className="label text-sm font-semibold leading-6 block mb-2 text-stone-50" htmlFor="confirmPassword">Confirmar Contraseña</label>
                     <input
+                        className='input border-2 rounded w-full px-2'
                         type="password"
                         {...register('confirmPassword')}
+                        placeholder='Confirmar Contraseña'
                         required
                     />
                 </div>
-                    <button type="submit" disabled={loading}>
+                    <button type="submit" disabled={loading} className='btn w-[25%] border-2 mt-2 mb-2 rounded text-stone-50'>
                         {loading ? <Spinner/> : 'Registrarse'}
                     </button>
             </form>

@@ -59,13 +59,13 @@ const BookDataForm = () => {
     };
 
     return (
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form overflow-y-scroll no-scrollbar h-full pt-4 pb-4 w-[50vw] bg-stone-800 flex flex-col place-items-center rounded-md" onSubmit={handleSubmit}>
             {error && <Error message={error} />}
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Autor</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Autor</h3>
                 <input
                     type="text"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="author"
                     placeholder="Autor"
                     value={formData.author}
@@ -73,11 +73,11 @@ const BookDataForm = () => {
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Titulo</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Titulo</h3>
                 <input
                     type="text"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="title"
                     placeholder="Titulo"
                     value={formData.title}
@@ -85,11 +85,11 @@ const BookDataForm = () => {
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Genero</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Genero</h3>
                 <input
                     list="categories"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="categories"
                     placeholder="Genero"
                     value={formData.categories}
@@ -110,11 +110,11 @@ const BookDataForm = () => {
                     <option value="autobiography" />
                 </datalist>
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Editorial</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Editorial</h3>
                 <input
                     type="text"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="publisher"
                     placeholder="Editorial"
                     value={formData.publisher}
@@ -122,10 +122,10 @@ const BookDataForm = () => {
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label">Descripción</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Descripción</h3>
                 <textarea
-                    className="input"
+                    className="input border-2 rounded max-h-[15vh] w-full"
                     name="description"
                     placeholder="Descripción"
                     value={formData.description}
@@ -133,27 +133,27 @@ const BookDataForm = () => {
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Imagen de Portada</h3>
+            <div className="inContainer w-[80%] text-stone-50 mt-2 mb-2">
+                <h3 className="label text-sm font-semibold leading-6 mb-2">Imagen de Portada</h3>
                 <input
                     type="file"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="coverImage"
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">PDF</h3>
+            <div className="inContainer w-[80%] text-stone-50 mt-2 mb-2">
+                <h3 className="label text-sm font-semibold leading-6 mb-2">Contenido del libro</h3>
                 <input
                     type="file"
-                    className="input"
+                    className="input border-2 rounded w-full"
                     name="pdf"
                     onChange={handleChange}
                     required
                 />
             </div>
-            <button type="submit" className="btn">Enviar</button>
+            <button type="submit" className="btn w-[25%] text-stone-50 border-2 mt-2 mb-2 rounded">Enviar</button>
         </form>
     );
 };

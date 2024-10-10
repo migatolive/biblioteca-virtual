@@ -23,27 +23,29 @@ const LoginForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="form pt-4 pb-4 w-[50vw] bg-stone-800 flex flex-col place-items-center rounded-md">
             {error && <Error message={error} />}
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Email</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Correo Electrónico</h3>
                 <input
+                    className="input border-2 rounded w-full px-2"
                     type="email"
-                    placeholder="Email"
+                    placeholder="Correo Electrónico"
                     {...register('email')}
                     required
                 />
             </div>
-            <div className="inContainer">
-                <h3 className="label text-sm font-semibold leading-6 text-gray-900">Contraseña</h3>
+            <div className="inContainer w-[80%] mt-2 mb-2">
+                <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Contraseña</h3>
                 <input
+                    className="input border-2 rounded w-full px-2"
                     type="password"
                     placeholder="Contraseña"
                     {...register('password')}
                     required
                 />
             </div>
-            <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} className="btn text-stone-50 w-[25%] border-2 mt-2 mb-2 rounded">
                 {loading ? <Spinner /> : 'Iniciar sesión'}
             </button>
         </form>
