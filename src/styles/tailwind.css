@@ -11,5 +11,26 @@
     .no-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
-  }
+    }
+}
+/* Show menu items */
+@layer components {
+    .open {
+        @apply w-auto;
+        @apply h-fit;
+        @apply flex;
+        @apply flex-col;
+        @apply absolute;
+        @apply right-8;
+        @apply top-20;
+        @apply z-10;
+        @apply bg-white;
+        @apply rounded-md;
+        @apply shadow-2xl;
+    }
+
+    .open a {
+        @apply text-2xl;
+        @apply my-2;
+    }
 }
