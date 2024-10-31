@@ -8,7 +8,7 @@ import ProtectedRoute from "./ProtectedRoute.jsx";
 import BookDataForm from "./pages/BookDataForm.jsx";
 import Home from "./pages/Home.jsx";
 import Product from "./pages/Product.jsx";
-import Portfolio from "./pages/Porfolio.jsx";
+// import Portfolio from "./pages/Porfolio.jsx";
 
 function App() {
     return (
@@ -19,7 +19,7 @@ function App() {
                     <Route path="/books" element={<BookDataForm />}/>
                     <Route path="/home" element={<Home />}/>
                     <Route path="/product" element={<Product />}/>
-                    <Route path="/portfolio" element={<Portfolio />}/>
+                    {/*<Route path="/portfolio" element={<Portfolio />}/>*/}
                     <Route path="/login" element={<Login />}/>
                     <Route path="/register" element={<Register />}/>
                     <Route element={<ProtectedRoute />}>

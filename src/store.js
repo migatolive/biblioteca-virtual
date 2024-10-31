@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './features/auth/authSlice'
 import { authApi } from "./services/authService.jsx";
-import bookReducer from './features/book/bookSlice'
+import { bookApi } from "./services/bookService.jsx";
 
 const store = configureStore({
     reducer: {
         user: authReducer,
         [authApi.reducerPath]: authApi.reducer,
-        book: bookReducer,
+        [bookApi.reducerPath]: bookApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware),
+        getDefaultMiddleware().concat(authApi.middleware, bookApi.middleware),
     devTools: true,
 })
 
