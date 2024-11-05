@@ -38,7 +38,7 @@ const Header = () => {
 
     return (
         <header className='h-[14vh] w-full place-content-center'>
-            <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+            <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center h-full justify-between px-6 py-1 lg:px-8">
                 <Logo />
                 <NavBar menuOpen={menuOpen} toggleMenu={toggleMenu} />
                 <User userInfo={userInfo} />
@@ -52,7 +52,7 @@ function Logo() {
         <div className="flex lg:flex-1">
             <NavLink to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img id="logo" src="/src/assets/images/logo.png" alt="Logo" className="h-14 w-auto" />
+                <img id="logo" src="/src/assets/images/logo.png" alt="Logo" className="h-20 bg-black w-20" />
             </NavLink>
         </div>
     );
@@ -65,17 +65,17 @@ function NavBar({ menuOpen, toggleMenu }) {
                 <button
                     type="button"
                     onClick={toggleMenu}
-                    className="burger m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                    className="burger inline-flex items-center justify-center rounded-md text-gray-700"
                 >
                     <span className="sr-only">Open main menu</span>
-                    <img src="/src/assets/images/menu.png" alt="Menu" className={`burger ${menuOpen ? 'bg-stone-400 duration-500' : 'bg-none duration-500'} rounded-md h-12 w-12`} />
+                    <img src="/src/assets/images/menu.png" alt="Menu" className={`burger ${menuOpen ? 'bg-stone-400 duration-500' : 'bg-none duration-500'} rounded-md md:h-8 md:w-8 h-12 w-12`} />
                 </button>
             </div>
-            <div className={`ops ${menuOpen ? 'open' : 'hidden'} lg:flex`}>
+            <div className={`ops ${menuOpen ? 'open' : 'hidden'} gap-x-2 lg:flex`}>
                 <NavLink to="/home" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/home" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Inicio</NavLink>
-                <NavLink to="/portfolio" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/portfolio" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Portafolio</NavLink>
+                <NavLink to="/portfolio" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/portfolio/reading" || useLocation().pathname == "/portfolio/favorites" || useLocation().pathname == "/portfolio/comments" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Portafolio</NavLink>
                 <NavLink to="/contact" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/contact" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Contactanos</NavLink>
-                <NavLink to="/aboutUs" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/aboutUs" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Sobre Nosotros</NavLink>
+                <NavLink to="/aboutUs" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/aboutUs/developers" || useLocation().pathname == "/aboutUs/project" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Sobre Nosotros</NavLink>
                 <NavLink to="/user-profile" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/user-profile" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Perfil</NavLink>
                 <NavLink to="/books" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/books" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Libros</NavLink>
             </div>

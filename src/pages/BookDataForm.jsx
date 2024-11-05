@@ -59,7 +59,7 @@ const BookDataForm = () => {
     };
 
     return (
-        <form className="form overflow-y-scroll no-scrollbar h-full pt-4 pb-4 w-[50vw] bg-stone-800 flex flex-col place-items-center rounded-md" onSubmit={handleSubmit}>
+        <form className="form overflow-y-scroll justify-between no-scrollbar h-full pt-4 pb-4 w-[80vw] lg:w-[50vw] bg-stone-800 flex flex-col place-items-center rounded-md" onSubmit={handleSubmit}>
             {error && <Error message={error} />}
             <div className="inContainer w-[80%] mt-2 mb-2">
                 <h3 className="label text-sm text-stone-50 font-semibold leading-6 mb-2">Autor</h3>
@@ -153,7 +153,7 @@ const BookDataForm = () => {
                     required
                 />
             </div>
-            <button type="submit" className="btn w-[25%] text-stone-50 border-2 mt-2 mb-2 rounded">Enviar</button>
+            <button type="submit" className="btn justify-self-end bottom-[2vh] lg:static w-[25%] text-stone-50 border-2 mt-2 mb-2 rounded">Enviar</button>
         </form>
     );
 };
