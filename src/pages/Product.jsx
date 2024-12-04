@@ -1,13 +1,9 @@
 import { Link, NavLink, useSearchParams } from "react-router-dom";
-import pdf from "../assets/pdfs/si.pdf";
-import front from "../assets/image.png";
 import { BsDownload } from "react-icons/bs";
 
 const Product = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("prod");
-
-    const element = ['Book Title 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus architecto nostrum voluptatum illum qui obcaecati labore. Consectetur, voluptatibus soluta ducimus repudiandae quam obcaecati facilis. Vitae labore sunt consectetur fuga dolor?', '1248177874835'];
 
     return (
         <>

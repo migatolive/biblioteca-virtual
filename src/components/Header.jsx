@@ -40,7 +40,7 @@ const Header = () => {
         <header className='h-[14vh] w-full place-content-center'>
             <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center h-full justify-between px-6 py-1 lg:px-8">
                 <Logo />
-                <NavBar menuOpen={menuOpen} toggleMenu={toggleMenu} />
+                <NavBar menuOpen={menuOpen} toggleMenu={toggleMenu} userInfo={userInfo} />
                 <User userInfo={userInfo} />
             </nav>
         </header>
@@ -52,13 +52,13 @@ function Logo() {
         <div className="flex lg:flex-1">
             <NavLink to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img id="logo" src="/src/assets/images/logo.png" alt="Logo" className="h-20 bg-black w-20" />
+                <img id="logo" src="/src/assets/logo.png" alt="Logo" className="h-32 w-32" />
             </NavLink>
         </div>
     );
 }
 
-function NavBar({ menuOpen, toggleMenu }) {
+function NavBar({ menuOpen, toggleMenu, userInfo }) {
     return (
         <>
             <div className="flex absolute right-8 lg:hidden">
@@ -73,11 +73,19 @@ function NavBar({ menuOpen, toggleMenu }) {
             </div>
             <div className={`ops ${menuOpen ? 'open' : 'hidden'} gap-x-2 lg:flex`}>
                 <NavLink to="/home" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/home" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Inicio</NavLink>
-                <NavLink to="/portfolio" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/portfolio/reading" || useLocation().pathname == "/portfolio/favorites" || useLocation().pathname == "/portfolio/comments" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Portafolio</NavLink>
                 <NavLink to="/contact" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/contact" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Contactanos</NavLink>
                 <NavLink to="/aboutUs" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/aboutUs/developers" || useLocation().pathname == "/aboutUs/project" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Sobre Nosotros</NavLink>
                 <NavLink to="/user-profile" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/user-profile" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Perfil</NavLink>
-                <NavLink to="/books" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/books" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Libros</NavLink>
+                {userInfo ? (
+                    //{userInfo.email == "joaquinreynoso627@gmail.com" ? (
+                        <NavLink to="/books" className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/books" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`}>Libros</NavLink>
+                    //) : (
+                    //    <></>
+                    //)
+                    //}
+                ) : (
+                    <></>
+                )}
             </div>
         </>
     );
@@ -98,14 +106,14 @@ function User({ userInfo }) {
                             </button>
                         </>
                     ) : (
-                        <>
-                            <NavLink className='text-sm font-semibold leading-6 text-gray-900 button' to='/login'>
+                        <div className='flex flex-row gap-5'>
+                            <NavLink className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/login" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`} to='/login'>
                                 Iniciar Sesión
                             </NavLink>
-                            <NavLink className='text-sm font-semibold leading-6 text-gray-900 button' to='/register'>
+                            <NavLink className={`text-sm font-semibold leading-6  ${useLocation().pathname == "/register" ? "bg-stone-900 text-stone-50 " : "text-stone-900"} hover:bg-[#666666] hover:transition-[0.5s] transition-[0.5s] px-2 rounded-md`} to='/register'>
                                 Registrarse
                             </NavLink>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>

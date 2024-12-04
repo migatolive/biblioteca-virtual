@@ -37,8 +37,8 @@ const Home = () => {
                 </NavLink>
             ))}
             <Pagination
-                booksPerPage={booksPerPage}
-                totalBooks={books.length}
+                postsPerPage={booksPerPage}
+                totalPosts={books.length}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
             />
